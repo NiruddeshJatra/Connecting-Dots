@@ -7,16 +7,17 @@ import time
 
 class ConnectDotsGame:
     def __init__(self):
-        self.init_pygame()
+        pygame.mixer.init()
+        self.count = 0
+        self.dots = []
+        self.connected_dots = []
+        self.points = [0] * 10
+        
         self.setup_screen()
         self.get_player_count()
         self.get_grid_size()
-        self.init_game_variables()
         self.setup_grid()
         self.display_turn()
-
-    def init_pygame(self):
-        pygame.mixer.init()
 
     def play_sound(self, sound_file):
         sound = pygame.mixer.Sound(sound_file)
@@ -53,19 +54,11 @@ class ConnectDotsGame:
                 self.play_sound("sound/error.wav")
         self.play_sound("sound/message_box.mp3")
 
-    def init_game_variables(self):
-        self.count = 0
-        self.dots = []
-        self.connected_dots = []
-        self.points = [0] * 10
-        self.init_background_music()
-
-    def init_background_music(self):
+    def setup_grid(self):
         pygame.mixer.music.load("sound/life_grand_background_music.mp3")
         pygame.mixer.music.play(-1)
         pygame.mixer.music.set_volume(0.5)
-
-    def setup_grid(self):
+        
         for i in range(self.grid_size):
             for j in range(self.grid_size):
                 dot = turtle.Turtle()
@@ -95,17 +88,18 @@ class ConnectDotsGame:
 
     def game_over(self, winner):
         pygame.mixer.music.stop()
-        time.sleep(3)
+        time.sleep(2)
         self.wn.clear()
         self.wn.bgcolor("#5CB9BA")
-        self.play_sound("sound/end.wav")
+        self.play_sound("sound/got_bonus.mp3")
         self.show_message("GAME OVER", "Jokerman", 40, "#00011C")
         time.sleep(4)
         self.wn.clear()
+        
         self.wn.bgcolor("#5CB9BA")
         self.play_sound("sound/end.mp3")
         self.show_message(f"PLAYER {winner} WINS!", "Jokerman", 30, "#00011C")
-        time.sleep(7)
+        time.sleep(5)
         turtle.bye()
 
     def show_message(self, text, font, size, color):

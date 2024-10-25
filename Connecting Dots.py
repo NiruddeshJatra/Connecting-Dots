@@ -24,7 +24,7 @@ class ConnectDotsGame:
         sound.play()
 
     def setup_screen(self):
-        self.play_sound("sound\message_box.mp3")
+        self.play_sound("sound/L_message_box.mp3")
         self.wn = turtle.Screen()
         self.wn.title("Connecting Dots")
         self.wn.setup(width=750, height=625)
@@ -41,7 +41,7 @@ class ConnectDotsGame:
                 self.number_of_players = number_of_players
             else:
                 self.play_sound("sound/error.wav")
-        self.play_sound("sound/message_box.mp3")
+        self.play_sound("sound/L_message_box.mp3")
 
     def get_grid_size(self):
         valid_input = False
@@ -52,7 +52,7 @@ class ConnectDotsGame:
                 self.grid_size = grid_size
             else:
                 self.play_sound("sound/error.wav")
-        self.play_sound("sound/message_box.mp3")
+        self.play_sound("sound/L_message_box.mp3")
 
     def setup_grid(self):
         pygame.mixer.music.load("sound/life_grand_background_music.mp3")
@@ -91,7 +91,7 @@ class ConnectDotsGame:
         time.sleep(2)
         self.wn.clear()
         self.wn.bgcolor("#5CB9BA")
-        self.play_sound("sound/got_bonus.mp3")
+        self.play_sound("sound/got_bonus.wav")
         self.show_message("GAME OVER", "Jokerman", 40, "#00011C")
         time.sleep(4)
         self.wn.clear()
